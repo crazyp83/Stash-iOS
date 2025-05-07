@@ -1,0 +1,6 @@
+query ScenesQuery {
+  allScenes {
+    id
+    title
+  }
+}

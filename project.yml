@@ -1,0 +1,28 @@
+name: StashApp
+options:
+  bundleIdPrefix: com.crazyp83
+packages:
+  Apollo:
+    url: https://github.com/apollographql/apollo-ios.git
+    from: 0.51.2
+targets:
+  StashApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources
+    settings:
+      base:
+        INFOPLIST_FILE: Resources/Info.plist
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleIdentifier: com.crazyp83.stashapp
+        CFBundleName: StashApp
+        CFBundleVersion: "1.0"
+        CFBundleShortVersionString: "1.0"
+        UILaunchStoryboardName: ""
+        UISupportedInterfaceOrientations: ["UIInterfaceOrientationPortrait"]
+    dependencies:
+      - package: Apollo

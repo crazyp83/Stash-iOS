@@ -1,0 +1,20 @@
+name: Build iOS App
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Apollo CLI
+      run: npm install -g apollo
+    - name: Install xcodegen
+      run: brew install xcodegen
+    - name: Generate Apollo code
+      run: apollo codegen:generate --schema=GraphQL/schema.json --queries=GraphQL/*.graphql --output=Sources/API.swift
+    - name: Generate Xcode project
+      run: xcodegen generate
+    - name: Build
+      run: xcodebuild -project StashApp.xcodeproj -scheme StashApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15' build
